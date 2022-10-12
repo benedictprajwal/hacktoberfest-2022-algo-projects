@@ -1,0 +1,120 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: sans-serif;
+    color: rgb(51, 51, 51);
+}
+button{
+    font-family: sans-serif;
+}
+path, i, svg{
+    pointer-events: none;
+}
+.colors{
+    min-height: 80vh;
+    display: flex;
+    color: rgb(216, 216, 216);
+}
+.color{
+    height: 80vh;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    overflow: hidden;
+}
+.color h2{
+    font-size: 2rem;
+    cursor: pointer;
+}
+.sliders{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0%;
+    background: rgba(255, 255, 255);
+    /* opacity: 0; */
+    padding: 1rem;
+    width: 80%;
+    border-top-right-radius: 1rem;
+    /* pointer-events: none; */
+    border-top-left-radius: 1rem;
+    /* adding an adjustment class */
+    /* transform: translateY(100px); */
+    transition: all 0.5s ease-in-out;
+}
+.sliders.active{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+.sliders button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    border-bottom-left-radius: 1rem;
+    border: none;
+    background: rgb(78, 78, 78);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+.controls{
+    display: flex;
+    flex-direction: column;
+}
+.panel{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 20vh;
+}
+.panel button{
+    font-size: 1.2rem;
+    margin: 1rem;
+    padding: 1rem 2rem;
+    background: rgb(31, 33, 63);
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+.panel p{
+    font-size: 1.2rem;
+}
+.liberary-panel,.generate-panel,.save-panel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.adjust,.lock{
+    font-size: 2rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 2rem 0rem;
+}
+
+/* slider stuff */
+input[type = "range"]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    background: #fff;
+    border: 0.5px solid black;
+    height: 16px;
+    width: 16px;
+    border-radius: 10px;
+}
+input[type = "range" ]{
+    -webkit-appearance: none;
+    margin: 1rem 0rem;
+    width: 100%;
+    position: relative;
+    border-radius: 1rem;
+    cursor: pointer;
+}
