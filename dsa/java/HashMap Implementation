@@ -1,0 +1,99 @@
+/*Here Hashmap all the functionalities are implemented from scratch
+Note : Will understanding trace the code*/
+
+// Here code begins
+
+import java.util.ArrayList;
+// Pair class also we have to create
+ public class Pair<T,V>{
+    T first; 
+    V second;
+ }
+//  make Mapnode first 
+public class MapNode<K, V> {
+	K key;
+	V value;
+	MapNode<K, V> next;
+	
+	public MapNode(K key, V value) {
+		this.key = key;
+		this.value = value;
+	}
+}
+
+// All the function are implented 
+ public class Map <K, V> {
+	ArrayList<MapNode<K, V>> buckets;
+	int size;
+	int numBuckets;
+	public Map() {
+		numBuckets = 5;
+		buckets = new ArrayList<>();
+		for (int i = 0; i < numBuckets; i++) {
+			buckets.add(null);
+		}
+	}
+	// here to get the hashcode
+	private int getBucketIndex(K key) {
+		int hashCode = key.hashCode();
+		return hashCode % numBuckets;
+	}
+	
+  // to know size of hash map
+	public int size() {
+		return size;
+	}
+	
+  // to remove any key
+	public V removeKey(K key) {
+		int bucketIndex = getBucketIndex(key);
+		MapNode<K, V> head = buckets.get(bucketIndex);
+		MapNode<K, V> prev = null;
+		while (head != null) {
+			if (head.key.equals(key)) {
+				size--;
+				if (prev == null) {
+					buckets.set(bucketIndex, head.next);
+				} else {
+					prev.next = head.next;
+				}
+				return head.value;
+			}
+			prev = head;
+			head = head.next;
+		}
+		return null;
+	}
+	
+  // to get the value of key specified
+	public V getValue(K key) {
+		int bucketIndex = getBucketIndex(key);
+		MapNode<K, V> head = buckets.get(bucketIndex);
+		while (head != null) {
+			if (head.key.equals(key)) {
+				return head.value;
+			}
+			head = head.next;
+		}
+		return null;
+	}
+
+// to insert the KEY and VALUE pair
+	public void insert(K key, V value) {
+		int bucketIndex = getBucketIndex(key);
+		MapNode<K, V> head = buckets.get(bucketIndex);
+		while (head != null) {
+			if (head.key.equals(key)) {
+				head.value = value;
+				return;
+			}
+			head = head.next;
+		}
+		head = buckets.get(bucketIndex);
+		MapNode<K, V> newElementNode = new MapNode<K, V>(key , value);
+		size++;
+		newElementNode.next = head;
+		buckets.set(bucketIndex, newElementNode);
+	}
+}
+
