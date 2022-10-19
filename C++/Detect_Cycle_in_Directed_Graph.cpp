@@ -1,3 +1,5 @@
+//Name - Shruti Garg
+//Github id = gargshruti
 // To detect cycle in an directed graph
 #include <bits/stdc++.h>
 using namespace std;
