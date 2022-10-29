@@ -1,0 +1,116 @@
+//Name-Avnish Kumar
+//Github id-Avnish010
+
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+#define mod 1000000007
+//#define mod 998244353
+#define fastIO                        \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL);                    \
+    cout.tie(NULL)
+#define endl "\n"
+#define mp make_pair
+#define pb push_back
+#define pf push_front
+#define lb lower_bound
+#define ub upper_bound
+#define vi vector<int>
+#define vpi vector<pair<int, int>>
+#define mi map<int>
+#define msi map<string, int>
+#define mii map<int, int>
+#define spi set<pair<int, int>>
+const int limit = 1e18;
+const int N = 1e5 + 5;
+int sz;
+
+struct Q
+{
+    int l, r, idx;
+};
+Q q[N];
+bool cmp(Q a, Q b)
+{
+    if (a.l / sz == b.l / sz)
+    {
+        return a.r > b.r;
+    }
+    else
+    {
+        return a.l / sz < b.l / sz;
+    }
+}
+void solve()
+{
+
+    int n;
+    cin >> n;
+    int a[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+    sz = sqrt(n);
+    int quiries;
+    cin >> quiries;
+    for (int i = 0; i < quiries; i++)
+    {
+        int l, r;
+        cin >> l >> r;
+        q[i].l = l;
+        q[i].r = r;
+        q[i].idx = i;
+    }
+    sort(q, q + quiries, cmp);
+    for (int i = 0; i < quiries; i++)
+    {
+        cout << q[i].l << q[i].r << q[i].idx << endl;
+    }
+    vi ans(quiries);
+    int cur_r = -1, cur_l = 0, l, r;
+    int cans = 0;
+
+    for (int i = 0; i < quiries; i++)
+    {
+        l = q[i].l;
+        r = q[i].r;
+        l--;
+        r--;
+        while (cur_r < r)
+        {
+            cur_r++;
+            cans += a[cur_r];
+        }
+        while (cur_l < l)
+        {
+
+            cans -= a[cur_l];
+            cur_l++;
+        }
+        while (cur_l > l)
+        {
+            cur_l--;
+            cans += a[cur_l];
+        }
+        while (cur_r > r)
+        {
+            cans -= a[cur_r];
+            cur_r--;
+        }
+        ans[q[i].idx] = cans;
+    }
+    for (auto it : ans)
+        cout << it << endl;
+}
+signed main()
+{
+    fastIO;
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+}
