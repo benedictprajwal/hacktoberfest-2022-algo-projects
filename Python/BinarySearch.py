@@ -13,6 +13,5 @@ def binary_search(arr, x, low, high):
 
 arr = [2, 3, 4, 6, 10, 18]
 x = 10
-# O/P = 4
 
 print(binary_search(arr, x, 0, len(arr) - 1))
